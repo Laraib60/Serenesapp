@@ -1,113 +1,199 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Serenes</title>
-  <meta name="theme-color" content="#10B981" />
-  <link rel="manifest" href="/manifest.webmanifest" />
-  <link rel="icon" href="/assets/logo.png" />
-  <link rel="apple-touch-icon" href="/assets/icon-192x192.png" />
-  <link rel="stylesheet" href="/styles.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Serenes</title>
+<meta name="theme-color" content="#10B981" />
+<style>
+:root{--emerald:#10B981;--emerald2:#34d399;--ink:#0f172a;--muted:#6b7280;--bg:#f8fafc;--card:#fff;--shadow:0 12px 30px rgba(0,0,0,.08);--r:20px}
+*{box-sizing:border-box}html,body{height:100%}
+body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Helvetica,Arial;color:var(--ink);background:var(--bg)}
+h1,h2,h3,h4{margin:0}
+a{color:var(--emerald);text-decoration:none}
+.header{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;padding:16px 20px;background:#fff;box-shadow:var(--shadow)}
+.logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--emerald),var(--emerald2));display:grid;place-items:center;color:#fff;font-weight:900}
+.container{padding:20px;max-width:980px;margin:0 auto}
+.card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:14px;padding:12px 16px;background:var(--emerald);color:#fff;font-weight:700;cursor:pointer;box-shadow:0 10px 22px rgba(16,185,129,.28);transition:.18s transform}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:#eef2f7;color:#0f172a;box-shadow:none}
+.btn.secondary{background:#0ea5e9}
+.grid{display:grid;gap:16px}
+.grid.two{grid-template-columns:1fr}
+@media(min-width:860px){.grid.two{grid-template-columns:1fr 1fr}}
+.small{font-size:12px;color:#94a3b8}
+.badge{background:#ecfdf5;color:#065f46;border-radius:999px;padding:6px 10px;font-weight:800}
+.kpi{display:flex;flex-direction:column;gap:6px}
+.kpi .v{font-size:28px;font-weight:900}
+.kpi .l{font-size:12px;color:var(--muted)}
+.input{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #e5e7eb;outline:none}
+.hero{border-radius:24px;padding:24px;display:flex;gap:18px;align-items:center;background:linear-gradient(135deg,var(--emerald) 0%,var(--emerald2) 100%);color:#fff}
+.hero .pill{font-size:12px;background:rgba(255,255,255,.18);border-radius:999px;padding:6px 10px;margin-right:8px}
+.shopImg{width:180px;height:180px;border-radius:16px;background:linear-gradient(135deg,#fff,rgba(255,255,255,.6));display:grid;place-items:center;color:#065f46;font-weight:900}
+.tabbar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e5e7eb;display:flex;justify-content:space-around;padding:10px;z-index:20}
+.tabbar button{background:none;border:none;font-size:12px;color:#6b7280;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer}
+.tabbar button.active{color:var(--emerald);font-weight:800}
+footer{height:70px}
+hr{border:none;border-top:1px solid #e5e7eb;margin:16px 0}
+.price{font-size:26px;font-weight:900}
+.notice{font-size:12px;color:#64748b}
+.hidden{display:none}
+</style>
 </head>
 <body>
   <header class="header">
-    <img src="/assets/logo.png" alt="Serenes logo" onerror="this.style.display='none'"/>
+    <div class="logo">S</div>
     <h1>Serenes</h1>
     <div style="margin-left:auto" class="small">Fruits &amp; Veggies</div>
   </header>
 
   <main class="container">
     <!-- Onboarding -->
-    <section class="card hero" id="onboarding">
-      <img src="/assets/bottle.png" alt="Serenes bottle" onerror="this.style.display='none'"/>
+    <section id="onboarding" class="card hero">
+      <div class="shopImg">🍃</div>
       <div>
-        <h2 style="margin:0 0 6px 0">Boost your health daily</h2>
-        <div class="small">Build the habit, track your streaks, and shop in seconds.</div>
-        <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap">
-          <button class="btn" onclick="Serenes.navigate('home')">Get Started</button>
+        <h2 style="margin-bottom:6px">Boost your health daily</h2>
+        <div class="small" style="margin-bottom:10px">Build the habit, track your streaks, and shop in seconds.</div>
+        <div>
+          <button class="btn" onclick="nav('home')">Get Started</button>
           <a class="btn ghost" href="https://tryserenes.com/products/fruits-and-veggies-supplement?view=__DEFAULT__" target="_blank" rel="noopener">Learn More</a>
+        </div>
+        <div style="margin-top:12px">
+          <span class="pill">Digestive Support</span>
+          <span class="pill">Antioxidants</span>
+          <span class="pill">Heart Health</span>
         </div>
       </div>
     </section>
 
-    <!-- HOME -->
+    <!-- Home -->
     <section id="home" class="card" style="margin-top:16px">
-      <h3>Daily Check-in</h3>
+      <h3 style="margin-bottom:10px">Daily Check-in</h3>
       <div class="grid two">
         <div>
-          <div class="streak">
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
             <button class="btn" id="checkinBtn">✅ I took my Serenes</button>
             <span class="badge" id="streakBadge">Streak: 0</span>
           </div>
-          <p class="small">Tap once per day after taking your supplement.</p>
+          <p class="small" style="margin-top:10px">Tap once per day after taking your supplement.</p>
           <hr>
           <div class="kpi">
-            <div class="value" id="daysLogged">0</div>
-            <div class="label">Total days logged</div>
+            <div class="v" id="daysLogged">0</div>
+            <div class="l">Total days logged</div>
           </div>
         </div>
         <div>
-          <h4>Reminder</h4>
+          <h4 style="margin:0 0 10px 0">Reminder</h4>
           <label class="small" for="reminderTime">Reminder time</label>
-          <input class="input" id="reminderTime" type="time" value="10:00" />
-          <div style="display:flex; gap:8px; margin-top:10px">
+          <input id="reminderTime" class="input" type="time" value="10:00" />
+          <div style="display:flex;gap:8px;margin-top:10px">
             <button class="btn" id="saveReminder">Save</button>
             <button class="btn ghost" id="toggleNotifications">Enable Notifications</button>
           </div>
-          <p class="notice">Notifications need permission. Local reminders work now; background push can be added later.</p>
+          <p class="notice" style="margin-top:8px">Notifications require permission. Local reminders work now; background push requires a backend (add later).</p>
         </div>
       </div>
     </section>
 
     <!-- Rewards -->
     <section id="rewards" class="card" style="margin-top:16px">
-      <h3>Rewards</h3>
-      <p>Keep your streak to unlock discounts and perks. Coming soon!</p>
-      <div class="grid two">
+      <h3 style="margin-bottom:10px">Rewards</h3>
+      <p class="small">Keep your streak to unlock discounts and perks. Coming soon!</p>
+      <div class="grid two" style="margin-top:10px">
         <div class="card" style="background:#ecfdf5">
-          <div class="kpi"><div class="value" id="currentStreak">0</div><div class="label">Current streak</div></div>
+          <div class="kpi"><div class="v" id="currentStreak">0</div><div class="l">Current streak</div></div>
         </div>
         <div class="card" style="background:#eff6ff">
-          <div class="kpi"><div class="value">7 days</div><div class="label">First milestone</div></div>
+          <div class="kpi"><div class="v">7 days</div><div class="l">First milestone</div></div>
         </div>
       </div>
     </section>
 
     <!-- Shop -->
     <section id="shop" class="card" style="margin-top:16px">
-      <h3>Shop Serenes</h3>
+      <h3 style="margin-bottom:10px">Shop Serenes</h3>
       <div class="grid two">
-        <div class="center">
-          <img src="/assets/bottle.png" alt="Serenes Fruits & Veggies" style="width:180px; height:180px; object-fit:contain" onerror="this.style.display='none'"/>
-        </div>
+        <div class="shopImg">🫐</div>
         <div>
-          <h4>Serenes Fruits &amp; Veggies</h4>
-          <div class="small">Daily nutrition • Antioxidants • Digestive health • Heart support</div>
+          <h4 style="margin:0">Serenes Fruits &amp; Veggies</h4>
+          <div class="small" style="margin:6px 0 12px 0">Daily nutrition • Antioxidants • Digestive health • Heart support</div>
           <div class="price">$49.95</div>
-          <div style="display:flex; gap:8px; margin-top:12px">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
             <a class="btn" target="_blank" rel="noopener" href="https://tryserenes.com/products/fruits-and-veggies-supplement?view=__DEFAULT__">Buy Now</a>
             <a class="btn secondary" target="_blank" rel="noopener" href="https://tryserenes.com/products/fruits-and-veggies-supplement?view=__DEFAULT__">Subscribe &amp; Save</a>
           </div>
-          <p class="small">Checkout opens on tryserenes.com</p>
+          <p class="small" style="margin-top:8px">Checkout opens on tryserenes.com</p>
         </div>
       </div>
     </section>
   </main>
 
   <nav class="tabbar">
-    <button data-tab="onboarding" class="active" onclick="Serenes.navigate('onboarding')">Onboarding</button>
-    <button data-tab="home" onclick="Serenes.navigate('home')">Home</button>
-    <button data-tab="rewards" onclick="Serenes.navigate('rewards')">Rewards</button>
-    <button data-tab="shop" onclick="Serenes.navigate('shop')">Shop</button>
+    <button data-tab="onboarding" class="active" onclick="nav('onboarding')">Onboarding</button>
+    <button data-tab="home" onclick="nav('home')">Home</button>
+    <button data-tab="rewards" onclick="nav('rewards')">Rewards</button>
+    <button data-tab="shop" onclick="nav('shop')">Shop</button>
   </nav>
   <footer></footer>
 
-  <script src="/main.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => { navigator.serviceWorker.register('/service-worker.js'); });
+<script>
+const S = {
+  streak: parseInt(localStorage.getItem('serenes_streak')||'0'),
+  last: localStorage.getItem('serenes_last')||'',
+  days: parseInt(localStorage.getItem('serenes_days')||'0'),
+  time: localStorage.getItem('serenes_time')||'10:00',
+  enabled: localStorage.getItem('serenes_notif')==='true',
+  notified: localStorage.getItem('serenes_notified')||''
+};
+const $ = s=>document.querySelector(s);
+function save(){ localStorage.setItem('serenes_streak',S.streak);
+  localStorage.setItem('serenes_last',S.last);
+  localStorage.setItem('serenes_days',S.days);
+  localStorage.setItem('serenes_time',S.time);
+  localStorage.setItem('serenes_notif',S.enabled);
+  localStorage.setItem('serenes_notified',S.notified);
+}
+function render(){
+  $('#streakBadge').textContent='Streak: '+S.streak;
+  $('#currentStreak').textContent=S.streak;
+  $('#daysLogged').textContent=S.days;
+  $('#reminderTime').value=S.time;
+  $('#toggleNotifications').textContent=S.enabled?'Disable Notifications':'Enable Notifications';
+}
+function todayIso(){ return new Date().toISOString().slice(0,10); }
+function checkin(){
+  const t=new Date(), last=S.last?new Date(S.last):null;
+  if(!last || last.toDateString()!==t.toDateString()){ S.streak++; S.days++; S.last=t.toISOString(); }
+  save(); render();
+}
+async function askNotif(){
+  const p = await Notification.requestPermission();
+  if(p==='granted'){ S.enabled=true; save(); new Notification('🌱 Serenes','Notifications enabled!');}
+  render();
+}
+function loop(){
+  setInterval(()=>{
+    if(!S.enabled) return;
+    const [h,m]=S.time.split(':').map(Number);
+    const n=new Date(); const today=todayIso();
+    if(n.getHours()===h && n.getMinutes()===m && S.notified!==today){
+      new Notification('🌱 Serenes Reminder',{body:'Time to take your Serenes Fruits & Veggies!'});
+      S.notified=today; save();
     }
-  </script>
+  }, 30000);
+}
+function nav(id){
+  document.querySelectorAll('.tabbar button').forEach(b=>b.classList.toggle('active', b.dataset.tab===id));
+  // sections are stacked; keep simple for MVP
+  window.scrollTo({top: document.getElementById(id).offsetTop-70, behavior:'smooth'});
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  $('#checkinBtn').addEventListener('click',checkin);
+  $('#saveReminder').addEventListener('click',()=>{ S.time=$('#reminderTime').value||'10:00'; save(); alert('Reminder saved'); });
+  $('#toggleNotifications').addEventListener('click',()=>{ S.enabled? (S.enabled=false, save(), render()) : askNotif(); });
+  render(); loop();
+});
+</script>
 </body>
 </html>
