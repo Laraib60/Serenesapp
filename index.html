@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2299.77">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!doctype html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="utf-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Serenes&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="theme-color" content="#10B981"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="manifest" href="/manifest.webmanifest"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="icon" href="/assets/logo.png"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="apple-touch-icon" href="/assets/icon-192x192.png"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="stylesheet" href="/styles.css"&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;header class="header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;img src="/assets/logo.png" alt="Serenes logo" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;Serenes&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div style="margin-left:auto" class="small"&gt;Fruits &amp;amp; Veggies&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;main class="container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Splash / Onboarding --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="card hero" id="onboarding"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;img src="/assets/bottle.png" alt="Serenes bottle" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2 style="margin:0 0 6px 0"&gt;Boost your health daily&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="small"&gt;Build the habit, track your streaks, and shop in seconds.&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button class="btn" onclick="Serenes.navigate('home')"&gt;Get Started&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;a class="btn ghost" href="https://tryserenes.com/products/fruits-and-veggies-supplement?view=__DEFAULT__" target="_blank"&gt;Learn More&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- HOME: Habit Tracker --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="home" class="card" style="margin-top:16px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Daily Check-in&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="grid two"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="streak"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="btn" id="checkinBtn"&gt;✅ I took my Serenes&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="badge" id="streakBadge"&gt;Streak: 0&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p class="small"&gt;Tap once per day after taking your supplement.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;hr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="kpi"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="value" id="daysLogged"&gt;0&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="label"&gt;Total days logged&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h4&gt;Reminder&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;label class="small" for="reminderTime"&gt;Reminder time&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input class="input" id="reminderTime" type="time" value="10:00" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div style="display:flex; gap:8px; margin-top:10px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="btn" id="saveReminder"&gt;Save&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="btn ghost" id="toggleNotifications"&gt;Enable Notifications&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p class="notice"&gt;Notifications require permission. Local reminders work now; background push needs a later server setup.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Rewards teaser --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="rewards" class="card" style="margin-top:16px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Rewards&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;Keep your streak to unlock discounts and perks. Coming soon!&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="grid two"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card" style="background:#ecfdf5"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="kpi"&gt;&lt;div class="value" id="currentStreak"&gt;0&lt;/div&gt;&lt;div class="label"&gt;Current streak&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card" style="background:#eff6ff"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="kpi"&gt;&lt;div class="value"&gt;7 days&lt;/div&gt;&lt;div class="label"&gt;First milestone&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Shop --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="shop" class="card" style="margin-top:16px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Shop Serenes&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="grid two"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;img src="/assets/bottle.png" alt="Serenes Fruits &amp; Veggies" style="width:180px; height:180px; object-fit:contain" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h4&gt;Serenes Fruits &amp;amp; Veggies&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="small"&gt;Daily nutrition • Antioxidants • Digestive health • Heart support&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="price"&gt;$49.95&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div style="display:flex; gap:8px; margin-top:12px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a class="btn" target="_blank" href="https://tryserenes.com/products/fruits-and-veggies-supplement?view=__DEFAULT__"&gt;Buy Now&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a class="btn secondary" target="_blank" href="https://tryserenes.com/products/fruits-and-veggies-supplement?view=__DEFAULT__"&gt;Subscribe &amp;amp; Save&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p class="small"&gt;Checkout will open on tryserenes.com&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/main&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;nav class="tabbar"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button data-tab="onboarding" class="active" onclick="Serenes.navigate('onboarding')"&gt;Onboarding&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button data-tab="home" onclick="Serenes.navigate('home')"&gt;Home&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button data-tab="rewards" onclick="Serenes.navigate('rewards')"&gt;Rewards&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button data-tab="shop" onclick="Serenes.navigate('shop')"&gt;Shop&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/nav&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;footer&gt;&lt;/footer&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script src="/main.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if ('serviceWorker' in navigator) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>window.addEventListener('load', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>navigator.serviceWorker.register('/service-worker.js');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
