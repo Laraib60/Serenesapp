@@ -1,0 +1,9 @@
+[build]
+  # This is a static site (no build step). Publish the repository root.
+  publish = "."
+
+# SPA redirect so client-side routing works on Netlify
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
