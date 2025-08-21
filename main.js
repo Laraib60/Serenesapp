@@ -1,82 +1,148 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2299.77">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
-</head>
-<body>
-<p class="p1">const Serenes = (() =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const $ = (sel) =&gt; document.querySelector(sel);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const state = {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>streak: parseInt(localStorage.getItem('serenes_streak') || '0'),</p>
-<p class="p1"><span class="Apple-converted-space">    </span>lastCheckin: localStorage.getItem('serenes_last_checkin') || null,</p>
-<p class="p1"><span class="Apple-converted-space">    </span>daysLogged: parseInt(localStorage.getItem('serenes_days_logged') || '0'),</p>
-<p class="p1"><span class="Apple-converted-space">    </span>reminderTime: localStorage.getItem('serenes_reminder_time') || '10:00',</p>
-<p class="p1"><span class="Apple-converted-space">    </span>notificationsEnabled: localStorage.getItem('serenes_notifications') === 'true',</p>
-<p class="p1"><span class="Apple-converted-space">    </span>notifiedOn: localStorage.getItem('serenes_notified_on') || ''</p>
-<p class="p1"><span class="Apple-converted-space">  </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>function save() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>Object.keys(state).forEach(k =&gt; localStorage.setItem('serenes_' + k, state[k]));</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>function render() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>$('#streakBadge').textContent = `Streak: ${state.streak}`;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>$('#currentStreak').textContent = state.streak;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>$('#daysLogged').textContent = state.daysLogged;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>$('#reminderTime').value = state.reminderTime;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>$('#toggleNotifications').textContent = state.notificationsEnabled ? 'Disable Notifications' : 'Enable Notifications';</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>function checkin() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const today = new Date();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (!state.lastCheckin || new Date(state.lastCheckin).toDateString() !== today.toDateString()) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>state.streak++;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>state.daysLogged++;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>state.lastCheckin = today.toISOString();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>save(); render();</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>function saveReminder() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>state.reminderTime = $('#reminderTime').value;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>save(); alert('Reminder set');</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>async function requestNotifications() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const perm = await Notification.requestPermission();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (perm === 'granted') {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>state.notificationsEnabled = true; save();</p>
-<p class="p1"><span class="Apple-converted-space">      </span>new Notification("🌱 Serenes Reminder", { body:"You'll get daily notifications!" });</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>render();</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>function startReminderLoop() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>setInterval(() =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (!state.notificationsEnabled) return;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const [h,m] = state.reminderTime.split(':').map(Number);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const now = new Date();</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const today = now.toISOString().slice(0,10);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (now.getHours()===h &amp;&amp; now.getMinutes()===m &amp;&amp; state.notifiedOn!==today) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>new Notification("🌱 Serenes Reminder", { body:"Time to take your Serenes Fruits &amp; Veggies!" });</p>
-<p class="p1"><span class="Apple-converted-space">        </span>state.notifiedOn = today; save();</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}, 30000);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>function init() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>$('#checkinBtn').onclick = checkin;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>$('#saveReminder').onclick = saveReminder;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>$('#toggleNotifications').onclick = () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>state.notificationsEnabled ? (state.notificationsEnabled=false, save()) : requestNotifications();</p>
-<p class="p1"><span class="Apple-converted-space">      </span>render();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>};</p>
-<p class="p1"><span class="Apple-converted-space">    </span>render(); startReminderLoop();</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>return {navigate:(id)=&gt;{}, init};</p>
-<p class="p1">})();</p>
-<p class="p1">window.addEventListener('DOMContentLoaded', Serenes.init);</p>
-</body>
-</html>
+const Serenes = (() => {
+  const $ = (sel) => document.querySelector(sel);
+  const state = {
+    streak: parseInt(localStorage.getItem('serenes_streak') || '0'),
+    lastCheckin: localStorage.getItem('serenes_last_checkin') || null,
+    daysLogged: parseInt(localStorage.getItem('serenes_days_logged') || '0'),
+    reminderTime: localStorage.getItem('serenes_reminder_time') || '10:00',
+    notificationsEnabled: localStorage.getItem('serenes_notifications') === 'true',
+    notifiedOn: localStorage.getItem('serenes_notified_on') || ''
+  };
+
+  function save() {
+    localStorage.setItem('serenes_streak', state.streak);
+    localStorage.setItem('serenes_last_checkin', state.lastCheckin || '');
+    localStorage.setItem('serenes_days_logged', state.daysLogged);
+    localStorage.setItem('serenes_reminder_time', state.reminderTime);
+    localStorage.setItem('serenes_notifications', state.notificationsEnabled);
+    localStorage.setItem('serenes_notified_on', state.notifiedOn);
+  }
+
+  function render() {
+    const streakBadge = $('#streakBadge');
+    const currentStreak = $('#currentStreak');
+    const daysLogged = $('#daysLogged');
+    const reminderTime = $('#reminderTime');
+    const toggleNotifications = $('#toggleNotifications');
+
+    if (streakBadge) streakBadge.textContent = `Streak: ${state.streak}`;
+    if (currentStreak) currentStreak.textContent = state.streak;
+    if (daysLogged) daysLogged.textContent = state.daysLogged;
+    if (reminderTime) reminderTime.value = state.reminderTime;
+    if (toggleNotifications) toggleNotifications.textContent = state.notificationsEnabled ? 'Disable Notifications' : 'Enable Notifications';
+  }
+
+  function checkin() {
+    const today = new Date();
+    if (!state.lastCheckin || new Date(state.lastCheckin).toDateString() !== today.toDateString()) {
+      state.streak++;
+      state.daysLogged++;
+      state.lastCheckin = today.toISOString();
+      save();
+      render();
+    } else {
+      // Already checked in today
+      alert('You already checked in today — great job!');
+    }
+  }
+
+  function saveReminder() {
+    state.reminderTime = $('#reminderTime').value || '10:00';
+    save();
+    alert('Reminder saved');
+  }
+
+  async function requestNotifications() {
+    if (!('Notification' in window)) {
+      alert('Notifications are not supported in this browser.');
+      return;
+    }
+    const perm = await Notification.requestPermission();
+    if (perm === 'granted') {
+      state.notificationsEnabled = true;
+      save();
+      new Notification('🌱 Serenes Reminder', { body: "You'll get daily notifications!" });
+    } else {
+      state.notificationsEnabled = false;
+      save();
+    }
+    render();
+  }
+
+  function startReminderLoop() {
+    setInterval(() => {
+      if (!state.notificationsEnabled) return;
+      const [h, m] = state.reminderTime.split(':').map(Number);
+      const now = new Date();
+      const today = now.toISOString().slice(0,10);
+      if (now.getHours() === h && now.getMinutes() === m && state.notifiedOn !== today) {
+        try {
+          new Notification('🌱 Serenes Reminder', { body: 'Time to take your Serenes Fruits & Veggies!' });
+        } catch (e) {
+          console.warn('Notification failed', e);
+        }
+        state.notifiedOn = today;
+        save();
+      }
+    }, 30000); // check every 30s
+  }
+
+  function navigate(id) {
+    // Show the requested section, hide others
+    const sections = document.querySelectorAll('main > section');
+    sections.forEach(s => {
+      s.style.display = (s.id === id) ? '' : 'none';
+    });
+
+    // Update tabbar active state
+    document.querySelectorAll('.tabbar button').forEach(b => {
+      b.classList.toggle('active', b.dataset.tab === id);
+    });
+
+    // Update URL hash without adding history entry
+    if (id) {
+      history.replaceState(null, '', `#${id}`);
+    }
+    // ensure viewport top on navigation
+    window.scrollTo(0, 0);
+  }
+
+  function init() {
+    // nav highlighting only (buttons already change .active via navigate)
+    document.querySelectorAll('.tabbar button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        // navigation is handled by the onclick in the markup calling Serenes.navigate
+        // keep this to ensure keyboard/mouse interactions still update UI if direct clicks happen
+        const id = btn.dataset.tab;
+        navigate(id);
+      });
+    });
+
+    const checkinBtn = $('#checkinBtn');
+    if (checkinBtn) checkinBtn.addEventListener('click', checkin);
+    const saveReminderBtn = $('#saveReminder');
+    if (saveReminderBtn) saveReminderBtn.addEventListener('click', saveReminder);
+    const toggleNotificationsBtn = $('#toggleNotifications');
+    if (toggleNotificationsBtn) toggleNotificationsBtn.addEventListener('click', () => {
+      if (state.notificationsEnabled) {
+        state.notificationsEnabled = false;
+        save();
+        render();
+      } else {
+        requestNotifications();
+      }
+    });
+
+    // On load: show section from hash or default to onboarding
+    const initial = location.hash ? location.hash.replace('#','') : 'onboarding';
+    // If section doesn't exist, fallback to onboarding
+    const available = document.getElementById(initial) ? initial : 'onboarding';
+    navigate(available);
+
+    render();
+    startReminderLoop();
+  }
+
+  return { navigate, init };
+})();
+window.addEventListener('DOMContentLoaded', Serenes.init);
