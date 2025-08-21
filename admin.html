@@ -1,36 +1,113 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2299.77">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Serenes</title>
+  <meta name="theme-color" content="#10B981" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/assets/logo.png" />
+  <link rel="apple-touch-icon" href="/assets/icon-192x192.png" />
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-<p class="p1">&lt;!doctype html&gt;</p>
-<p class="p1">&lt;html&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="utf-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Serenes Admin&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="stylesheet" href="/styles.css"&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;header class="header"&gt;&lt;h1&gt;Serenes Admin&lt;/h1&gt;&lt;/header&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;main class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="login"&gt;&lt;input id="adminPass" type="password"&gt;&lt;button id="loginBtn"&gt;Login&lt;/button&gt;&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="dashboard" style="display:none"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div&gt;Total Installs: &lt;span id="installs"&gt;0&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div&gt;Daily Active Users: &lt;span id="dau"&gt;0&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div&gt;Average Streak: &lt;span id="avgStreak"&gt;0&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div&gt;Notifications Sent: &lt;span id="notifs"&gt;0&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/main&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;script src="/admin.js"&gt;&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+  <header class="header">
+    <img src="/assets/logo.png" alt="Serenes logo" onerror="this.style.display='none'"/>
+    <h1>Serenes</h1>
+    <div style="margin-left:auto" class="small">Fruits &amp; Veggies</div>
+  </header>
+
+  <main class="container">
+    <!-- Onboarding -->
+    <section class="card hero" id="onboarding">
+      <img src="/assets/bottle.png" alt="Serenes bottle" onerror="this.style.display='none'"/>
+      <div>
+        <h2 style="margin:0 0 6px 0">Boost your health daily</h2>
+        <div class="small">Build the habit, track your streaks, and shop in seconds.</div>
+        <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap">
+          <button class="btn" onclick="Serenes.navigate('home')">Get Started</button>
+          <a class="btn ghost" href="https://tryserenes.com/products/fruits-and-veggies-supplement?view=__DEFAULT__" target="_blank" rel="noopener">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOME -->
+    <section id="home" class="card" style="margin-top:16px">
+      <h3>Daily Check-in</h3>
+      <div class="grid two">
+        <div>
+          <div class="streak">
+            <button class="btn" id="checkinBtn">✅ I took my Serenes</button>
+            <span class="badge" id="streakBadge">Streak: 0</span>
+          </div>
+          <p class="small">Tap once per day after taking your supplement.</p>
+          <hr>
+          <div class="kpi">
+            <div class="value" id="daysLogged">0</div>
+            <div class="label">Total days logged</div>
+          </div>
+        </div>
+        <div>
+          <h4>Reminder</h4>
+          <label class="small" for="reminderTime">Reminder time</label>
+          <input class="input" id="reminderTime" type="time" value="10:00" />
+          <div style="display:flex; gap:8px; margin-top:10px">
+            <button class="btn" id="saveReminder">Save</button>
+            <button class="btn ghost" id="toggleNotifications">Enable Notifications</button>
+          </div>
+          <p class="notice">Notifications need permission. Local reminders work now; background push can be added later.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rewards -->
+    <section id="rewards" class="card" style="margin-top:16px">
+      <h3>Rewards</h3>
+      <p>Keep your streak to unlock discounts and perks. Coming soon!</p>
+      <div class="grid two">
+        <div class="card" style="background:#ecfdf5">
+          <div class="kpi"><div class="value" id="currentStreak">0</div><div class="label">Current streak</div></div>
+        </div>
+        <div class="card" style="background:#eff6ff">
+          <div class="kpi"><div class="value">7 days</div><div class="label">First milestone</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shop -->
+    <section id="shop" class="card" style="margin-top:16px">
+      <h3>Shop Serenes</h3>
+      <div class="grid two">
+        <div class="center">
+          <img src="/assets/bottle.png" alt="Serenes Fruits & Veggies" style="width:180px; height:180px; object-fit:contain" onerror="this.style.display='none'"/>
+        </div>
+        <div>
+          <h4>Serenes Fruits &amp; Veggies</h4>
+          <div class="small">Daily nutrition • Antioxidants • Digestive health • Heart support</div>
+          <div class="price">$49.95</div>
+          <div style="display:flex; gap:8px; margin-top:12px">
+            <a class="btn" target="_blank" rel="noopener" href="https://tryserenes.com/products/fruits-and-veggies-supplement?view=__DEFAULT__">Buy Now</a>
+            <a class="btn secondary" target="_blank" rel="noopener" href="https://tryserenes.com/products/fruits-and-veggies-supplement?view=__DEFAULT__">Subscribe &amp; Save</a>
+          </div>
+          <p class="small">Checkout opens on tryserenes.com</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="tabbar">
+    <button data-tab="onboarding" class="active" onclick="Serenes.navigate('onboarding')">Onboarding</button>
+    <button data-tab="home" onclick="Serenes.navigate('home')">Home</button>
+    <button data-tab="rewards" onclick="Serenes.navigate('rewards')">Rewards</button>
+    <button data-tab="shop" onclick="Serenes.navigate('shop')">Shop</button>
+  </nav>
+  <footer></footer>
+
+  <script src="/main.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => { navigator.serviceWorker.register('/service-worker.js'); });
+    }
+  </script>
 </body>
 </html>
